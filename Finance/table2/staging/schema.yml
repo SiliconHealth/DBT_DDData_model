@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_finance__table2_filtered_data
+    description: "Filtered data for specific year and month"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: AN
+        description: "Patient in-hospital number"
+      - name: PTTYPE
+        description: "Patient type"
+      - name: INCDATE
+        description: "Date of incident"
+      - name: SPCFLAG
+        description: "Special clinic flag 1=yes 0=no"
+      - name: INCAMT
+        description: "Income amount"
+      - name: year
+        description: "Year of incident"
+      - name: month
+        description: "Month of incident"

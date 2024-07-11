@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: stg_finance__kcmh
+    description: "Sum of each years patients count and fund amount for KCMH staff"
+    columns:
+      - name: year
+        description: "Year extracted from INCDATE."
+      - name: PTTYPEEXT
+        description: "PTTYPEEXT from ARPT table."
+      - name: CLAIMLCTNAME
+        description: "NAME from CLAIMLCT table."
+      - name: TotalAmount
+        description: "Sum of RFNDAMT and WELFAREAMT each year"
+      - name: UniquePatients
+        description: "count of unique HNs each year"
+  - name: stg_finance__non_kcmh
+    description: "Sum of each years patients count and fund amount for non KCMH staff"
+    columns:
+      - name: year
+        description: "Year extracted from INCDATE."
+      - name: PTTYPEEXT
+        description: "PTTYPEEXT from ARPT table."
+      - name: CLAIMLCTNAME
+        description: "NAME from CLAIMLCT table."
+      - name: TotalAmount
+        description: "Sum of WELFAREAMT each year"
+      - name: UniquePatients
+        description: "count of unique HNs each year"
+  - name: stg_finance__table3_joined_INCPT_ARPT_CLAIMLCT
+    description: "Joined data from INCPT, ARPT and CLAIMLCT with additional year column."
+    columns:
+      - name: ARNO
+        description: "ARNO from ARPT table."
+      - name: HN
+        description: "HN from ARPT table."
+      - name: PTTYPE
+        description: "PTTYPE from ARPT table."
+      - name: PTTYPEEXT
+        description: "PTTYPEEXT from ARPT table."
+      - name: INCDATE
+        description: "INCDATE from ARPT table."
+      - name: SPCFLAG
+        description: "SPCFLAG from ARPT table."
+      - name: WELFAREAMT
+        description: "WELFAREAMT from ARPT table."
+      - name: CLAIMLCT
+        description: "CLAIMLCT from CLAIMLCT table."
+      - name: CLAIMLCTNAME
+        description: "NAME from CLAIMLCT table."
+      - name: year
+        description: "Year extracted from INCDATE."
+  - name: stg_finance__table3_joined_ARPT_CLAIMLCT
+    description: "Joined data from ARPT and CLAIMLCT."
+    columns:
+      - name: ARNO
+        description: "ARNO from ARPT table."
+      - name: CLAIMLCT
+        description: "CLAIMLCT from CLAIMLCT table."
+      - name: NAME
+        description: "NAME from CLAIMLCT table."

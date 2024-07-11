@@ -1,0 +1,31 @@
+version: 2
+
+
+sources:
+  - name: dbo
+    tables:
+      - name: INCPT
+        description: "INCPT table"
+        columns:
+          - name: id
+            description: "The primary key for this table."
+          - name: other_column
+            description: "Another column in the INCPT table."
+
+models:
+  - name: INCPT
+    description: "INCPT, TABLE"
+    columns:
+      - name: HN
+        description: "NUMBER[22]"
+        tests:
+          - not_null
+      - name: INCDATE
+        description: "DATE[7]"
+        tests:
+          - not_null
+      - name: INCTIME
+        description: "NUMBER[22]"
+        tests:
+          - not_null
+

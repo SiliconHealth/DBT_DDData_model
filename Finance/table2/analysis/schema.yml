@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: anal_finance__table2_ipd
+    description: "Count of visit, patient, and total amount. Grouped by PTTYPE and month/year of visit"
+    columns:
+      - name: year
+        description: "Year of incident"
+      - name: month
+        description: "Month of incident"
+      - name: PTTYPE
+        description: "Patient type"
+      - name: visit_count
+        description: "Count of visit"
+      - name: unique_hn_count
+        description: "Count of patients"
+      - name: total_incam
+        description: "Sum of income by month"
+  - name: anal_finance__table2_opd
+    description: "Count of visit, patient, and total amount. Grouped by PTTYPE and month/year of visit"
+    columns:
+      - name: year
+        description: "Year of incident"
+      - name: month
+        description: "Month of incident"
+      - name: PTTYPE
+        description: "Patient type"
+      - name: visit_count
+        description: "Count of visit"
+      - name: unique_hn_count
+        description: "Count of patients"
+      - name: total_incam
+        description: "Sum of income by month"

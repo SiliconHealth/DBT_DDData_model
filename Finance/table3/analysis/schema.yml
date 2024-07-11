@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: anal_finance__table3
+    description: "Aggregates staff and staff families total amounts and unique patients from KCMH and non-KCMH data."
+    columns:
+      - name: year
+        description: "The year of the data."
+        tests:
+          - not_null
+          - unique
+      - name: CLAIMLCTNAME
+        description: "Name of the parent organization."
+        tests:
+          - not_null
+          - unique
+      - name: StaffTotalAmount
+        description: "Total amount for staff."
+        tests:
+          - not_null
+      - name: StaffUniquePatients
+        description: "Unique patients count for staff."
+        tests:
+          - not_null
+      - name: StaffFamTotalAmount
+        description: "Total amount for staff families."
+        tests:
+          - not_null
+      - name: StaffFamUniquePatients
+        description: "Unique patients count for staff families."
+        tests:
+          - not_null

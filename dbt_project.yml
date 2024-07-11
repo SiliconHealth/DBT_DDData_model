@@ -1,0 +1,23 @@
+name: 'KCMH_DB'
+version: '1.0'
+config-version: 2
+
+profile: 'DD_CU'
+
+# Paths to where your model files are located
+model-paths: ["Finance", "sources"]
+
+# Optional paths for seeds, snapshots, etc.
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+
+# Directory for compiled SQL and artifacts
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Default configurations for models in the project
+models:
+  KCMH_DB:
+    materialized: view

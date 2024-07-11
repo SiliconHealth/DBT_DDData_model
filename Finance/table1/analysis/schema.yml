@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: anal_finance__table1_ipd
+    description: "Aggregated IPD data by month"
+    columns:
+      - name: month
+        description: "Visit month"
+      - name: collected_cases
+        description: "Number of collected cases"
+      - name: collected_amount
+        description: "Total collected amount"
+      - name: unpaid_cases
+        description: "Number of unpaid cases"
+      - name: unpaid_amount
+        description: "Total unpaid amount"
+      - name: paid_cases
+        description: "Number of paid cases"
+      - name: paid_amount
+        description: "Total paid amount"
+      - name: collected_percentage
+        description: "Percentage of collected amounts"
+  - name: anal_finance__table1_opd
+    description: "Aggregated OPD data by month"
+    columns:
+      - name: month
+        description: "Visit month"
+      - name: collected_cases
+        description: "Number of collected cases"
+      - name: collected_amount
+        description: "Total collected amount"
+      - name: unpaid_cases
+        description: "Number of unpaid cases"
+      - name: unpaid_amount
+        description: "Total unpaid amount"
+      - name: paid_cases
+        description: "Number of paid cases"
+      - name: paid_amount
+        description: "Total paid amount"
+      - name: collected_percentage
+        description: "Percentage of collected amounts"

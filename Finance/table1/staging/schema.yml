@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_finance__table1_joined_data
+    description: "Table that joined INCPT, ARPT, ARPTINC by ARNO"
+    columns:
+      - name: ARNO
+        description: "Unique identifier for joined data"
+        tests:
+          - not_null
+      - name: HN
+        description: "Patient number"
+        tests:
+          - not_null
+      - name: AN
+        description: "Admission number"
+      - name: PTTYPE
+        description: "Patient type"
+      - name: VSTDATE
+        description: "Visit date"
+      - name: SPCFLAG
+        description: "Special flag"
+      - name: RFNDAMT
+        description: "Refund amount"
+      - name: CUTACTAMT
+        description: "Cut account amount"
+      - name: PAIDST
+        description: "Payment status"
+      - name: visit_month
+        description: "Month of visit, truncated to first day of the month"
