@@ -11,8 +11,8 @@ WITH joined_data AS (
         c.PAIDST,
         DATEPART(MONTH, a.VSTDATE) AS visit_month,
         DATEPART(YEAR, a.VSTDATE) AS visit_year
-    FROM {{ source('dbo', 'ARPT') }} a
-    JOIN {{ source('dbo', 'ARPTINC') }} b ON a.ARNO = b.ARNO
-    JOIN {{ source('dbo', 'INCPT') }} c ON a.ARNO = c.ARNO
+    FROM {{ source('ddc_internal', 'ARPT') }} a
+    JOIN {{ source('ddc_internal', 'ARPTINC') }} b ON a.ARNO = b.ARNO
+    JOIN {{ source('ddc_internal', 'INCPT') }} c ON a.ARNO = c.ARNO
 )
 SELECT * FROM joined_data

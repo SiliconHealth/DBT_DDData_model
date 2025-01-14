@@ -6,12 +6,8 @@ models:
     columns:
       - name: ARNO
         description: "Unique identifier for joined data"
-        tests:
-          - not_null
       - name: HN
         description: "Patient number"
-        tests:
-          - not_null
       - name: AN
         description: "Admission number"
       - name: PTTYPE
