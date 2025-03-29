@@ -1,0 +1,166 @@
+version: 2
+
+models:
+  - name: stg_dataset__ipd_diag_icd10
+    description: "Diagnosis of IPD patients"
+    columns:
+      - name: AN
+        description: "Admission number"
+      - name: INDATE
+        description: "Admission date from inpatient summary"
+      - name: DCHDATE
+        description: "Discharge date from inpatient summary"
+      - name: DIAGTYPE
+        description: "Diagnosis type code"
+      - name: DIAGTYPE_NAME
+        description: "Name or description of the diagnosis type"
+      - name: ITEMNO
+        description: "Diagnosis item number"
+      - name: ICD10
+        description: "ICD-10 diagnosis code"
+      - name: ICD10WHO
+        description: "ICD-10 WHO standardized code"
+      - name: DISEASE_NAME
+        description: "Disease name associated with ICD-10 code"
+      - name: DIAGKEY
+        description: "Unique key for the diagnosis entry"
+      - name: FIRSTDATE
+        description: "Date of the first occurrence of the diagnosis"
+  - name: stg_dataset__opd_diag_icd10
+    description: "Diagnosis of OPD patients"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: VSTDATETIME
+        description: "Visit datetime, calculated by combining INDATE and INTIME (HHMMSS format)"
+      - name: CLINICLCT
+        description: "Clinic location code"
+      - name: ITEMNO
+        description: "Diagnosis item number"
+      - name: AN
+        description: "Admission number"
+      - name: VN
+        description: "Visit number"
+      - name: ICD10
+        description: "ICD-10 diagnosis code"
+      - name: ICD10WHO
+        description: "ICD-10 WHO standardized code"
+      - name: DISEASE_NAME
+        description: "Disease name associated with ICD-10 code"
+      - name: DIAGTYPE
+        description: "Diagnosis type code"
+      - name: DIAGTYPE_NAME
+        description: "Name or description of the diagnosis type"
+      - name: DIAGKEY
+        description: "Unique key for the diagnosis entry"
+      - name: FIRSTDATE
+        description: "Date of the first occurrence of the diagnosis"
+  - name: stg_dataset__opd_proc_icd9cm
+    description: "Outpatient procedures (ICD-9-CM)"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: VSTDATETIME
+        description: "Visit datetime, calculated by combining INDATE and INTIME (HHMMSS format)"
+      - name: CLINICLCT
+        description: "Clinic location code"
+      - name: DSPNAME
+        description: "Display name of the clinic location"
+      - name: HCODE
+        description: "Local hospital code used for internal categorization of services or departments"
+      - name: ITEMNO
+        description: "Procedure item number"
+      - name: AN
+        description: "Admission number"
+      - name: VN
+        description: "Visit number"
+      - name: ICD9CM
+        description: "ICD-9-CM procedure code"
+      - name: PROC_NAME
+        description: "Name or description of the ICD-9-CM procedure"
+      - name: FIRSTDATE
+        description: "Date of the first occurrence of the procedure"
+  - name: stg_dataset__ipd_proc_icd9cm
+    description: "Inpatient procedures (ICD-9-CM) with operating room usage and full procedure datetimes"
+    columns:
+      - name: AN
+        description: "Admission number"
+      - name: ITEMNO
+        description: "Procedure item number"
+      - name: ICD9CM
+        description: "ICD-9-CM procedure code"
+      - name: PROC_NAME
+        description: "Name or description of the ICD-9-CM procedure"
+      - name: USE_OR
+        description: "Indicator whether the procedure used an operating room ('Y' or 'N')"
+      - name: INDATETIME
+        description: "Start datetime of the procedure, calculated by combining INDATE and INTIME (HHMMSS format)"
+      - name: OUTDATETIME
+        description: "End datetime of the procedure, calculated by combining OUTDATE and OUTTIME (HHMMSS format)"
+      - name: FIRSTDATE
+        description: "Date of the first occurrence of the procedure"
+  - name: stg_finance__cost
+    description: "Costing and charge capture data from INCPT joined with order and patient type reference tables"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: INCDATETIME
+        description: "Datetime of the charge, calculated from INCDATE and INCTIME (HHMMSS format)"
+      - name: ORDERCODE
+        description: "Order or procedure code"
+      - name: INCOME
+        description: "Income group code associated with the order"
+      - name: NAME
+        description: "Order or procedure name from MASTERORDER"
+      - name: ITEMNO
+        description: "Item number within a receipt, representing a specific line item in the financial transaction"
+      - name: AN
+        description: "Admission number"
+      - name: VN
+        description: "Visit number"
+      - name: PTTYPE
+        description: "Patient type code"
+      - name: PTTYPE_NAME
+        description: "Patient type name from reference table"
+      - name: PTTYPEEXT
+        description: "Extended patient type code"
+      - name: PTTYPEEXT_NAME
+        description: "Extended patient type name from reference table"
+      - name: DCT
+        description: "Doctor code responsible for the order"
+      - name: OVERTIME
+        description: "Flag indicating if the order was made during overtime hours"
+      - name: RFRLCT
+        description: "Referral location code"
+      - name: INCAMT
+        description: "Amount charged for the order"
+      - name: FINREFNO
+        description: "Reference number of the invoice (ใบแจ้งหนี้); used for financial tracking and billing"
+      - name: QTY
+        description: "Quantity of the item or service ordered"
+      - name: CANCELDATE
+        description: "Date the order was canceled, if applicable"
+      - name: FIRSTDATE
+        description: "Date the order was first recorded"
+      - name: FINLCT
+        description: "Location related to financial handling or billing"
+      - name: INCGRP
+        description: "Income group or category"
+      - name: RFINREFNO
+        description: "Reference number for treatment cancellation (ยกเลิกการรักษา); links to the original financial transaction"
+      - name: RCPTLCT
+        description: "Receipt location code"
+      - name: CASHFREQNO
+        description: "Cash frequency or batch number"
+      - name: EXPDATETIME
+        description: "Datetime representing the expiration of the order or service, calculated from EXPDATE and EXPTIME (HHMM[SS] format)"
+      - name: FEXP_REF
+        description: "Reference to future expected expenses or adjustments"
+      - name: WARD
+        description: "Ward code where the patient stayed"
+      - name: DSPNAME
+        description: "Display name of the ward location"
+      - name: ROOMNO
+        description: "Room number assigned to the patient"
+      - name: BEDNO
+        description: "Bed number assigned to the patient"
