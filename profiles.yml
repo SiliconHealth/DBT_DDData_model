@@ -8,7 +8,7 @@ DD_CU:
       password: MICROSOFTsucksH4RD
       port: 1433
       database: DD_CU
-      schema: dbo
+      schema: ddc_internal
       threads: 4
       driver: 'ODBC Driver 17 for SQL Server'
       encrypt: true

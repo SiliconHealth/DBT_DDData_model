@@ -1,0 +1,4 @@
+/target
+/source_tables_csv
+/logs
+/dbt_packages

@@ -13,6 +13,6 @@ WITH joined_data AS (
         DATEPART(YEAR, a.VSTDATE) AS visit_year
     FROM {{ source('dbo', 'ARPT') }} a
     JOIN {{ source('dbo', 'ARPTINC') }} b ON a.ARNO = b.ARNO
-    JOIN {{ source('dbo', 'INCPT') }} c ON a.ARNO = c.ARNO
+    JOIN {{ source('dbo', 'INCPT') }} c ON a.ARNO = c.ARNO and b.ORDERCODE = c.ORDERCODE and b.ACTLCT = c.ACTLCT and b.INCGRP = c.INCGRP
 )
 SELECT * FROM joined_data
