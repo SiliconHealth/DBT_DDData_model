@@ -219,3 +219,72 @@ models:
         description: "Date the visit was first recorded"
       - name: CANCELDATE
         description: "Date the visit was canceled, if applicable"
+  - name: stg_finance__vital_signs
+    description: "Outpatient vital signs and triage data collected during visit, including blood pressure, temperature, and GCS"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: VSTDATE
+        description: "Visit date"
+      - name: VSTTIME
+        description: "Visit time"
+      - name: CLINICLCT
+        description: "Clinic location code"
+      - name: ITEM
+        description: "Item or observation index within the visit"
+      - name: VN
+        description: "Visit number"
+      - name: FN
+        description: "Form number or internal reference number"
+      - name: PRDATETIME
+        description: "Datetime the vital signs were recorded, from PRDATE and PRTIME (HHMMSS format)"
+      - name: AN
+        description: "Admission number"
+      - name: LBPN
+        description: "Low (diastolic) blood pressure in mmHg"
+      - name: HBPN
+        description: "High (systolic) blood pressure in mmHg"
+      - name: PR
+        description: "Pulse rate (beats per minute)"
+      - name: RR
+        description: "Respiratory rate (breaths per minute)"
+      - name: BT
+        description: "Body temperature (°C)"
+      - name: O2SAT
+        description: "Oxygen saturation (%)"
+      - name: E
+        description: "Eye response score in Glasgow Coma Scale (GCS)"
+      - name: V
+        description: "Verbal response score in GCS"
+      - name: M
+        description: "Motor response score in GCS"
+      - name: GCS
+        description: "Total Glasgow Coma Scale score (E + V + M)"
+      - name: HCT
+        description: "Hematocrit value (%)"
+      - name: DTX
+        description: "Capillary blood glucose (mg/dL)"
+      - name: PS
+        description: "Pain score"
+      - name: PS2
+        description: "Second pain score or alternative pain scale"
+      - name: NOTE
+        description: "Additional notes or observations from the triage nurse"
+      - name: WEIGHT
+        description: "Patient weight (kg)"
+      - name: HEIGHT
+        description: "Patient height (cm)"
+      - name: HEADLINE
+        description: "Head circumference or measurement (cm)"
+      - name: CHESTLINE
+        description: "Chest circumference or measurement (cm)"
+      - name: WAISTLINE
+        description: "Waist circumference (cm)"
+      - name: HIPLINE
+        description: "Hip circumference (cm)"
+      - name: EMRGNCY
+        description: "Flag indicating emergency status of the visit"
+      - name: ZONELCT
+        description: "Zone location within the clinic or triage area"
+      - name: ROOMNO
+        description: "Room number where the vitals were recorded"
