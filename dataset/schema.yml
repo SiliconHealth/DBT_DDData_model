@@ -288,3 +288,42 @@ models:
         description: "Zone location within the clinic or triage area"
       - name: ROOMNO
         description: "Room number where the vitals were recorded"
+  - name: stg_dataset__ipd_admission_details
+    description: "Inpatient admission and discharge data with detailed timestamps and resolved display names for location and discharge type codes"
+    columns:
+      - name: AN
+        description: "Admission number"
+      - name: HN
+        description: "Patient number"
+      - name: WEIGHT
+        description: "Patient weight at time of admission (kg)"
+      - name: RGTDATETIME
+        description: "Datetime of inpatient registration, calculated from RGTDATE and RGTTIME"
+      - name: WARDCODE
+        description: "Ward code of the assigned location"
+      - name: WARDNAME
+        description: "Display name of the ward, resolved from location code"
+      - name: ROOM
+        description: "Room number where the patient was admitted"
+      - name: BEDNO
+        description: "Bed number assigned to the patient"
+      - name: DCT
+        description: "Doctor code responsible for inpatient care"
+      - name: INDATETIME
+        description: "Datetime of actual inpatient admission, calculated from INDATE and INTIME"
+      - name: SUMMARIZED_INDATETIME
+        description: "Datetime of admission from IPTSUMMARY, summarized by Medical records officer"
+      - name: DCHDATETIME
+        description: "Datetime of discharge, calculated from DCHDATE and DCHTIME"
+      - name: SUMMARIZED_DCHDATETIME
+        description: "Datetime of discharge from IPTSUMMARY, summarized by Medical records officer"
+      - name: DCHTYPE
+        description: "Discharge type code"
+      - name: DCHNAME
+        description: "Display name for the discharge type"
+      - name: CANCELDATE
+        description: "Date the inpatient record was canceled, if applicable"
+      - name: FIRSTDATE
+        description: "Date the inpatient record was first created"
+      - name: SPCCLINICFLAG
+        description: "Flag indicating special clinic involvement"
