@@ -99,7 +99,7 @@ models:
         description: "End datetime of the procedure, calculated by combining OUTDATE and OUTTIME (HHMMSS format)"
       - name: FIRSTDATE
         description: "Date of the first occurrence of the procedure"
-  - name: stg_finance__cost
+  - name: stg_dataset__cost
     description: "Costing and charge capture data from INCPT joined with order and patient type reference tables"
     columns:
       - name: HN
@@ -164,3 +164,58 @@ models:
         description: "Room number assigned to the patient"
       - name: BEDNO
         description: "Bed number assigned to the patient"
+  - name: stg_dataset__opd_visit_timeline
+    description: "Detailed outpatient visit timeline with clinic info, timestamps for key events, and visit metadata"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: VSTDATETIME
+        description: "Datetime of the visit, constructed from VSTDATE and VSTTIME (HHMMSS format)"
+      - name: HCODE
+        description: "Local hospital code identifying the clinic location"
+      - name: CLINIC_NAME
+        description: "Display name of the clinic location"
+      - name: CLINICTYPE
+        description: "Type or category of clinic"
+      - name: AN
+        description: "Admission number (if linked to inpatient record)"
+      - name: VN
+        description: "Visit number"
+      - name: DCT
+        description: "Doctor code assigned to the visit"
+      - name: IN_STATUS_NAME
+        description: "Name of in status (from OVSTIST)"
+      - name: OUT_STATUS_NAME
+        description: "Name of out status (from OVSTOST)"
+      - name: WEIGHT
+        description: "Patient weight at the time of visit (kg)"
+      - name: HEIGHT
+        description: "Patient height at the time of visit (cm)"
+      - name: NEXTDATETIME
+        description: "Datetime the current visit was originally scheduled for (appointment datetime from NEXTDATE and NEXTTIME)"
+      - name: OAPPNO
+        description: "Appointment number or outpatient appointment reference"
+      - name: KIOSKDATE
+        description: "Date of kiosk check-in, if applicable"
+      - name: NURSE_CALL_DATETIME
+        description: "Datetime when nurse called the patient"
+      - name: REGDATETIME
+        description: "Datetime of patient registration, from REGDATE and REGTIME"
+      - name: HISTORY_TAKING_DATETIME
+        description: "Datetime of patient interview or history taking (from ITVDATE and ITVTIME)"
+      - name: SNDDCTDATETIME
+        description: "Datetime patient was sent to see the doctor (from SNDDCTDATE and SNDDCTTIME)"
+      - name: DOCTOR_CALL_DATETIME
+        description: "Datetime doctor called the patient"
+      - name: MEET_DCT_DATETIME
+        description: "Datetime of doctor-patient meeting (from MTDCTDATE and MTDCTTIME)"
+      - name: COMPLETE_DISCHARGE_DATETIME
+        description: "Datetime of visit discharge (from CMPDCTDATE and CMPDCTTIME)"
+      - name: AGE
+        description: "Patient age at time of visit"
+      - name: AGEFLAG
+        description: "Flag or indicator for age calculation or special age-related handling"
+      - name: FIRSTDATE
+        description: "Date the visit was first recorded"
+      - name: CANCELDATE
+        description: "Date the visit was canceled, if applicable"
