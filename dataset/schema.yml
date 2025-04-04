@@ -327,3 +327,205 @@ models:
         description: "Date the inpatient record was first created"
       - name: SPCCLINICFLAG
         description: "Flag indicating special clinic involvement"
+  - name: stg_dataset__lab_details
+    description: "Laboratory examination results including test details, specimen type, ordering and procedural locations, financial references, and microbiology sensitivity data"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: LVSTDATETIME
+        description: "Date and time the lab was visited or specimen collected"
+      - name: GROUP_NAME
+        description: "Lab test group name (e.g., Hematology, Chemistry)"
+      - name: LABEXM
+        description: "Lab exam code"
+      - name: LAB_NAME
+        description: "Name or description of the lab exam"
+      - name: RESULT
+        description: "Lab test result value"
+      - name: MINNRM
+        description: "Minimum normal reference value for the test"
+      - name: MAXNRM
+        description: "Maximum normal reference value for the test"
+      - name: NRMUNIT
+        description: "Unit of measurement for the result"
+      - name: HCODE
+        description: "Hospital-specific lab exam code"
+      - name: ORDERCODE
+        description: "Order code associated with the lab exam"
+      - name: ITEMNO
+        description: "Item number within the lab visit receipt"
+      - name: AN
+        description: "Admission number"
+      - name: LN
+        description: "Lab number or lab order ID"
+      - name: LABLCT
+        description: "Lab location code"
+      - name: LAB_LOCATION_NAME
+        description: "Name of the lab location where the test was performed"
+      - name: SPECIMEN
+        description: "Type of specimen collected for the lab exam"
+      - name: LRFRLCT
+        description: "Location code where the lab was ordered from"
+      - name: LAB_ORDERED_LOCATION_NAME
+        description: "Display name of the location where lab was ordered"
+      - name: DCT
+        description: "Doctor who ordered the lab"
+      - name: RQTDATE
+        description: "Request date of the lab order"
+      - name: LVSTST
+        description: "Lab visit status code"
+      - name: NAME
+        description: "Status name for the lab visit"
+      - name: PRICE
+        description: "Charge amount for the lab exam"
+      - name: FIRSTDATE
+        description: "Date the lab exam was first recorded"
+      - name: OPRTLCT
+        description: "Location code for where the procedure was performed"
+      - name: PROCEDURAL_LOCATION_NAME
+        description: "Name of the location where the procedure took place"
+      - name: FINLCT
+        description: "Financial processing location code"
+      - name: PAYMENT_LOCATION_NAME
+        description: "Name of the payment or billing location"
+      - name: FINREFNO
+        description: "Invoice reference number for the lab exam"
+      - name: RCPTLCT
+        description: "Cashier location code"
+      - name: CASHIER_LOCATION_NAME
+        description: "Display name of the cashier or billing station"
+      - name: CANCELDATE
+        description: "Date the lab order or result was canceled, if applicable"
+      - name: BAC_NAME
+        description: "Name of bacteria identified from culture"
+      - name: BAC_HCODE
+        description: "Hospital-specific bacteria code"
+      - name: BAC_QTY
+        description: "Quantity or colony count of bacteria identified"
+      - name: MED_NAME
+        description: "Name of antimicrobial drug tested"
+      - name: SENS_MED_HCODE
+        description: "Hospital-specific code for the sensitivity drug"
+      - name: SENSITIVITY
+        description: "Sensitivity result of bacteria to the drug (e.g., S, I, R)"
+      - name: MIC
+        description: "Minimum Inhibitory Concentration of the drug"
+      - name: UNIT
+        description: "Unit of measurement for MIC"
+  - name: stg_dataset__drug_prescription_details
+    description: >
+      Flattened and enriched prescription detail view. Includes mappings for med usage types, quantities, units, and symptoms using lookup tables.
+      Source tables: PRSCDT, PRSC, MEDITEMDIS, MEDUSEQTY, MEDUSETYPE, MEDUSEUNIT, MEDUSETIME, MEDSYMPTOM, OVST.
+    columns:
+      - name: PRSCNO
+        description: Prescription number
+        tests:
+          - not_null
+      - name: ITEMNO
+        description: Item sequence number within the prescription
+        tests:
+          - not_null
+      - name: SPHMLCT
+        description: Hospital location code
+      - name: PACKSEQ
+        description: Packaging sequence number
+      - name: HN
+        description: Hospital number of patient
+      - name: AN
+        description: Admission number
+      - name: VN
+        description: Visit number
+      - name: PTTYPE
+        description: Patient type code
+      - name: PTTYPEEXT
+        description: Extended patient type
+      - name: PRSCDATE
+        description: Prescription date
+      - name: PRSCTIME
+        description: Prescription time
+      - name: PRFRLCT
+        description: Clinic location code
+      - name: VSTTIME
+        description: Visit time from OVST
+      - name: CLINICLCT
+        description: Clinic code from OVST
+      - name: MEDITEM
+        description: Medication item code
+      - name: QTY
+        description: Quantity prescribed
+      - name: MEDCODE
+        description: Medication code (from MEDITEMDIS)
+      - name: MEDFORM
+        description: Medication form
+      - name: MALE
+        description: Gender indicator (1 = Male)
+      - name: MEDUSETYPE
+        description: Medication use type code
+      - name: MEDUSETYPE_NAME
+        description: Medication use type description
+      - name: MEDUSEQTY
+        description: Medication use quantity code
+      - name: MEDUSEQTY_NAME
+        description: Medication use quantity description
+      - name: MEDUSEUNIT
+        description: Medication use unit code
+      - name: MEDUSEUNIT_NAME
+        description: Medication use unit description
+      - name: MEDUSETIME
+        description: Medication use time code
+      - name: MEDUSETIME_NAME
+        description: Medication use time description
+      - name: MEDSYMPTOM
+        description: Medication symptom code
+      - name: MEDSYMPTOM_NAME
+        description: Medication symptom description
+      - name: ROUTE_NAME
+        description: Route name (from seed_med_route)
+      - name: ICSALE
+        description: Income code (billing category)
+      - name: ORDERCODE
+        description: Order code
+      - name: INCOME
+        description: Income code from PRSCDT
+      - name: PRSCDTEXT
+        description: Text used in printed prescription
+      - name: PRSCTYPEPT
+        description: Prescription type for patient
+      - name: PRSCST
+        description: Prescription status
+      - name: TOTALITEM
+        description: Total items in the prescription
+      - name: PRSCAMT
+        description: Total prescription amount
+      - name: TYPE_OF_ORDER
+        description: Type of order
+      - name: RUNNING_NO
+        description: Running number for tracking
+      - name: FINLCT
+        description: Final location code
+      - name: FINREFNO
+        description: Reference number for final billing
+      - name: CONFIRMDATE
+        description: Date prescription was confirmed
+      - name: CONFIRMTIME
+        description: Time prescription was confirmed
+      - name: CHKDATE
+        description: Date prescription was checked
+      - name: CHKTIME
+        description: Time prescription was checked
+      - name: OTPDATE
+        description: Outpatient pickup date
+      - name: OTPTIME
+        description: Outpatient pickup time
+      - name: RCVDATE
+        description: Received date
+      - name: CANCELDATE
+        description: Cancellation date
+      - name: ISSUESTF
+        description: Staff who issued the prescription
+      - name: C_PHLOC
+        description: Pharmacy location
+      - name: FIRSTDATE
+        description: Record creation date
+      - name: STATUS
+        description: Current prescription status
