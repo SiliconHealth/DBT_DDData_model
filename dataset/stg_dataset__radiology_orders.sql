@@ -36,9 +36,9 @@ SELECT
     RDOEXM.CCHARGE AS EXAM_CHARGE,
 
     -- 📦 Financials
-    RVSTEXM.FINLCT,
+    RVST.FINLCT,
     LCT_FIN.NAME AS FINLCT_NAME,
-    RVSTEXM.FINREFNO,
+    RVST.FINREFNO,
 
     -- 🏥 Locations
     RVST.RCPTLCT,
@@ -68,7 +68,7 @@ LEFT JOIN {{ source('ddc_internal', 'RDOGRP') }} RDOGRP
 
 -- 🌐 Location lookups
 LEFT JOIN {{ source('ddc_internal', 'LCT') }} LCT_FIN
-    ON RVSTEXM.FINLCT = LCT_FIN.LCT
+    ON RVST.FINLCT = LCT_FIN.LCT
 
 LEFT JOIN {{ source('ddc_internal', 'LCT') }} LCT_OPR
     ON RVSTEXM.OPRTLCT = LCT_OPR.LCT
