@@ -513,3 +513,89 @@ models:
         description: First recorded date of the prescription item
       - name: STATUS
         description: Status of the prescription
+  - name: stg_dataset__radiology_orders
+    description: Radiology or diagnostic exam requests with patient details timestamps financials and resolved display names
+    columns:
+      - name: HN
+        description: Patient number
+      - name: RDOGRP
+        description: Exam group code
+      - name: RDOEXM
+        description: Exam code
+      - name: ITEMNO
+        description: Item number within the exam request
+      - name: REQNO
+        description: Exam request number
+      - name: RVSTDATETIME
+        description: Combined datetime of exam request from RVSTDATE and RVSTTIME
+      - name: VN
+        description: Visit number
+      - name: FN
+        description: Form number or document number for the visit
+      - name: AN
+        description: Admission number
+      - name: PTTYPE
+        description: Patient type code
+      - name: PTTYPEEXT
+        description: Extended patient type code
+      - name: AGE
+        description: Patient age
+      - name: AGE_FLAG
+        description: Flag for age calculation or age-based classification
+      - name: RQTDATE
+        description: Date the exam request was made
+      - name: DCT
+        description: Doctor code who ordered the exam
+      - name: OPRTLCT
+        description: Location code where the exam was performed
+      - name: OPRTLCT_NAME
+        description: Display name of the exam performing location
+      - name: QTY
+        description: Quantity of the exam item requested
+      - name: PRICE
+        description: Price or cost of the exam
+      - name: EXAM_NAME
+        description: Name or description of the exam
+      - name: EXAM_ORDERCODE
+        description: Order code associated with the exam
+      - name: EXAM_CHARGE
+        description: Charge group or classification of the exam
+      - name: FINLCT
+        description: Financial processing location code
+      - name: FINLCT_NAME
+        description: Display name for the financial processing location
+      - name: FINREFNO
+        description: Reference number for the financial transaction
+      - name: RCPTLCT
+        description: Receipt location code
+      - name: RCPTLCT_NAME
+        description: Display name for the receipt or cashier location
+      - name: GROUP_NAME
+        description: Name of the exam group
+  - name: stg_dataset__patients_health_coverage
+    description: Patient healthcare coverage and entitlement data including type subtype and coverage validity dates
+    columns:
+      - name: HN
+        description: Patient number
+      - name: AN
+        description: Admission number
+      - name: PTTYPE
+        description: Patient type code representing healthcare scheme
+      - name: PTTYPENAME
+        description: Display name of the patient type or scheme name
+      - name: PTTYPEEXT
+        description: Extended patient type code for subcategory or special status
+      - name: PTTYPEEXTNAME
+        description: Display name for the extended patient type
+      - name: PATIENTTYPE
+        description: Indicates internal or external patient classification
+      - name: SUBTYPE
+        description: Subtype of healthcare coverage such as referral category or sub-scheme
+      - name: ISSDATE
+        description: Date the hospital verified and assigned the healthcare coverage typically valid for the current day only
+      - name: EXPDATE
+        description: Expiration date of the coverage usually set to the issued date unless extended
+      - name: CHKDATE
+        description: Date the coverage was last verified or validated
+      - name: FIRSTDATE
+        description: First recorded date of the coverage entry

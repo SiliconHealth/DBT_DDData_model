@@ -1,0 +1,79 @@
+SELECT
+    -- 🔑 Keys & Identifiers
+    RVSTEXM.HN,
+    RVSTEXM.RDOGRP,
+    RVSTEXM.RDOEXM,
+    RVSTEXM.ITEMNO,
+    RVSTEXM.REQNO,
+
+    -- 📅 Combined Visit DateTime
+    DATEADD(SECOND, CAST(RVSTEXM.RVSTTIME AS INT) % 100,
+        DATEADD(MINUTE, (CAST(RVSTEXM.RVSTTIME AS INT) / 100) % 100,
+            DATEADD(HOUR, CAST(RVSTEXM.RVSTTIME AS INT) / 10000, RVSTEXM.RVSTDATE)
+        )
+    ) AS RVSTDATETIME,
+
+    -- 👤 Patient & Visit Info
+    RVST.VN,
+    RVST.FN,
+    RVST.AN,
+    RVST.PTTYPE,
+    RVST.PTTYPEEXT,
+    RVST.AGE,
+    RVST.AGE_FLAG,
+    RVST.RQTDATE,
+    RVST.DCT,
+
+    -- 💊 Exam Request Info
+    RVSTEXM.OPRTLCT,
+    LCT_OPR.NAME AS OPRTLCT_NAME,
+    RVSTEXM.QTY,
+    RVSTEXM.PRICE,
+
+    -- 🧪 Exam Metadata
+    RDOEXM.NAME AS EXAM_NAME,
+    RDOEXM.ORDERCODE AS EXAM_ORDERCODE,
+    RDOEXM.CCHARGE AS EXAM_CHARGE,
+
+    -- 📦 Financials
+    RVSTEXM.FINLCT,
+    LCT_FIN.NAME AS FINLCT_NAME,
+    RVSTEXM.FINREFNO,
+
+    -- 🏥 Locations
+    RVST.RCPTLCT,
+    LCT_RCPT.NAME AS RCPTLCT_NAME,
+
+    -- 🧩 Group Metadata
+    RDOGRP.NAME AS GROUP_NAME
+
+FROM {{ source('ddc_internal', 'RVSTEXM') }} RVSTEXM
+
+LEFT JOIN {{ source('ddc_internal', 'RVST') }} RVST
+    ON RVSTEXM.HN = RVST.HN
+   AND RVSTEXM.RVSTDATE = RVST.RVSTDATE
+   AND RVSTEXM.RVSTTIME = RVST.RVSTTIME
+   AND RVSTEXM.RDOGRP = RVST.RDOGRP
+
+LEFT JOIN {{ source('ddc_internal', 'RVSTDR') }} RVSTDR
+    ON RVSTEXM.HN = RVSTDR.HN
+   AND RVSTEXM.RVSTDATE = RVSTDR.DRDATE
+
+LEFT JOIN {{ source('ddc_internal', 'RDOEXM') }} RDOEXM
+    ON RVSTEXM.RDOGRP = RDOEXM.RDOGRP
+   AND RVSTEXM.RDOEXM = RDOEXM.RDOEXM
+
+LEFT JOIN {{ source('ddc_internal', 'RDOGRP') }} RDOGRP
+    ON RVSTEXM.RDOGRP = RDOGRP.RDOGRP
+
+-- 🌐 Location lookups
+LEFT JOIN {{ source('ddc_internal', 'LCT') }} LCT_FIN
+    ON RVSTEXM.FINLCT = LCT_FIN.LCT
+
+LEFT JOIN {{ source('ddc_internal', 'LCT') }} LCT_OPR
+    ON RVSTEXM.OPRTLCT = LCT_OPR.LCT
+
+LEFT JOIN {{ source('ddc_internal', 'LCT') }} LCT_RCPT
+    ON RVST.RCPTLCT = LCT_RCPT.LCT
+
+WHERE RVST.RVSTDATE IS NOT NULL

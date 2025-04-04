@@ -128,3 +128,5 @@ LEFT JOIN {{ source('ddc_internal', 'LCT')}} PRFRLCT
 
 LEFT JOIN {{ source('ddc_internal', 'LCT')}} FINLCT 
     ON PRSC.FINLCT = FINLCT.LCT
+
+WHERE PRSCDT.PRSCNO > 0
