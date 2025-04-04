@@ -412,11 +412,13 @@ models:
         description: "Minimum Inhibitory Concentration of the drug"
       - name: UNIT
         description: "Unit of measurement for MIC"
-  - name: stg_dataset__drug_prescription_details
-    description: Prescription and medication order details with converted datetime fields and patient visit context
+  - name: stg_dataset__pharmacy_orders_with_display_names
+    description: Medication orders and dispensing data with display names for reference fields and full prescription datetimes
     columns:
       - name: SPHMLCT
         description: Pharmacy location code where the prescription was dispensed
+      - name: SPHMLCT_NAME
+        description: Display name of the pharmacy location
       - name: PRSCNO
         description: Prescription number
       - name: ITEMNO
@@ -433,6 +435,8 @@ models:
         description: Patient type code
       - name: PRFRLCT
         description: Location code where the prescription was requested
+      - name: PRFRLCT_NAME
+        description: Display name of the requesting location
       - name: PRSCDATETIME
         description: Prescription datetime combined from PRSCDATE and PRSCTIME
       - name: MEDITEM
@@ -443,8 +447,8 @@ models:
         description: Hospital specific medication code
       - name: MEDFORM
         description: Form of medication
-      - name: MALE
-        description: Additional medication attribute
+      - name: MEDTYPE
+        description: Type of medication
       - name: MEDUSETYPE
         description: Usage type code
       - name: MEDUSETYPENAME
@@ -475,8 +479,8 @@ models:
         description: Free text notes or instructions on the prescription
       - name: PTTYPEEXT
         description: Extended patient type code
-      - name: PRSCTYPEPT
-        description: Prescription type
+      - name: NAME
+        description: Prescription type name
       - name: PRSCST
         description: Prescription status
       - name: TOTALITEM
@@ -488,7 +492,9 @@ models:
       - name: RUNNING_NO
         description: Running number for internal tracking
       - name: FINLCT
-        description: Financial processing location
+        description: Financial processing location code
+      - name: FINLCT_NAME
+        description: Display name for the financial processing location
       - name: FINREFNO
         description: Reference number for billing or invoice
       - name: CONFIRMEDDATETIME
@@ -497,10 +503,8 @@ models:
         description: Datetime the prescription was checked from CHKDATE and CHKTIME
       - name: OTPDATETIME
         description: Outpatient prescription datetime from OTPDATE and OTPTIME
-      - name: RCVDATETIME
-        description: Datetime the medication was received by the patient
-      - name: CANCELDATETIME
-        description: Datetime the prescription was canceled
+      - name: CANCELDATE
+        description: Date the prescription was canceled
       - name: ISSUESTF
         description: Staff ID who issued the medication
       - name: C_PHLOC
