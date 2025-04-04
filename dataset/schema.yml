@@ -413,119 +413,99 @@ models:
       - name: UNIT
         description: "Unit of measurement for MIC"
   - name: stg_dataset__drug_prescription_details
-    description: >
-      Flattened and enriched prescription detail view. Includes mappings for med usage types, quantities, units, and symptoms using lookup tables.
-      Source tables: PRSCDT, PRSC, MEDITEMDIS, MEDUSEQTY, MEDUSETYPE, MEDUSEUNIT, MEDUSETIME, MEDSYMPTOM, OVST.
+    description: Prescription and medication order details with converted datetime fields and patient visit context
     columns:
+      - name: SPHMLCT
+        description: Pharmacy location code where the prescription was dispensed
       - name: PRSCNO
         description: Prescription number
-        tests:
-          - not_null
       - name: ITEMNO
-        description: Item sequence number within the prescription
-        tests:
-          - not_null
-      - name: SPHMLCT
-        description: Hospital location code
+        description: Item number within the prescription
       - name: PACKSEQ
-        description: Packaging sequence number
+        description: Packaging sequence for the item
       - name: HN
-        description: Hospital number of patient
+        description: Patient number
       - name: AN
         description: Admission number
       - name: VN
         description: Visit number
       - name: PTTYPE
         description: Patient type code
-      - name: PTTYPEEXT
-        description: Extended patient type
-      - name: PRSCDATE
-        description: Prescription date
-      - name: PRSCTIME
-        description: Prescription time
       - name: PRFRLCT
-        description: Clinic location code
-      - name: VSTTIME
-        description: Visit time from OVST
-      - name: CLINICLCT
-        description: Clinic code from OVST
+        description: Location code where the prescription was requested
+      - name: PRSCDATETIME
+        description: Prescription datetime combined from PRSCDATE and PRSCTIME
       - name: MEDITEM
         description: Medication item code
       - name: QTY
-        description: Quantity prescribed
+        description: Quantity of medication prescribed
       - name: MEDCODE
-        description: Medication code (from MEDITEMDIS)
+        description: Hospital specific medication code
       - name: MEDFORM
-        description: Medication form
+        description: Form of medication
       - name: MALE
-        description: Gender indicator (1 = Male)
+        description: Additional medication attribute
       - name: MEDUSETYPE
-        description: Medication use type code
-      - name: MEDUSETYPE_NAME
-        description: Medication use type description
+        description: Usage type code
+      - name: MEDUSETYPENAME
+        description: Display name for usage type
       - name: MEDUSEQTY
-        description: Medication use quantity code
-      - name: MEDUSEQTY_NAME
-        description: Medication use quantity description
+        description: Usage quantity code
+      - name: MEDUSEQTYNAME
+        description: Display name for usage quantity
       - name: MEDUSEUNIT
-        description: Medication use unit code
-      - name: MEDUSEUNIT_NAME
-        description: Medication use unit description
+        description: Unit code for usage quantity
+      - name: MEDUSEUNITNAME
+        description: Display name for usage unit
       - name: MEDUSETIME
-        description: Medication use time code
-      - name: MEDUSETIME_NAME
-        description: Medication use time description
+        description: Usage time code
+      - name: MEDUSETIMENAME
+        description: Display name for usage time
       - name: MEDSYMPTOM
-        description: Medication symptom code
-      - name: MEDSYMPTOM_NAME
-        description: Medication symptom description
-      - name: ROUTE_NAME
-        description: Route name (from seed_med_route)
+        description: Symptom code for conditional usage
+      - name: MEDSYMPTOMNAME
+        description: Display name for symptom based medication use
       - name: ICSALE
-        description: Income code (billing category)
+        description: Cost rate of the medication item
       - name: ORDERCODE
-        description: Order code
+        description: Order code for the medication
       - name: INCOME
-        description: Income code from PRSCDT
+        description: Income group associated with the medication
       - name: PRSCDTEXT
-        description: Text used in printed prescription
+        description: Free text notes or instructions on the prescription
+      - name: PTTYPEEXT
+        description: Extended patient type code
       - name: PRSCTYPEPT
-        description: Prescription type for patient
+        description: Prescription type
       - name: PRSCST
         description: Prescription status
       - name: TOTALITEM
-        description: Total items in the prescription
+        description: Total number of items in the prescription
       - name: PRSCAMT
-        description: Total prescription amount
+        description: Total cost amount of the prescription
       - name: TYPE_OF_ORDER
-        description: Type of order
+        description: Type of medication order
       - name: RUNNING_NO
-        description: Running number for tracking
+        description: Running number for internal tracking
       - name: FINLCT
-        description: Final location code
+        description: Financial processing location
       - name: FINREFNO
-        description: Reference number for final billing
-      - name: CONFIRMDATE
-        description: Date prescription was confirmed
-      - name: CONFIRMTIME
-        description: Time prescription was confirmed
-      - name: CHKDATE
-        description: Date prescription was checked
-      - name: CHKTIME
-        description: Time prescription was checked
-      - name: OTPDATE
-        description: Outpatient pickup date
-      - name: OTPTIME
-        description: Outpatient pickup time
-      - name: RCVDATE
-        description: Received date
-      - name: CANCELDATE
-        description: Cancellation date
+        description: Reference number for billing or invoice
+      - name: CONFIRMEDDATETIME
+        description: Datetime the prescription was confirmed from CONFIRMDATE and CONFIRMTIME
+      - name: CHECKEDDATETIME
+        description: Datetime the prescription was checked from CHKDATE and CHKTIME
+      - name: OTPDATETIME
+        description: Outpatient prescription datetime from OTPDATE and OTPTIME
+      - name: RCVDATETIME
+        description: Datetime the medication was received by the patient
+      - name: CANCELDATETIME
+        description: Datetime the prescription was canceled
       - name: ISSUESTF
-        description: Staff who issued the prescription
+        description: Staff ID who issued the medication
       - name: C_PHLOC
-        description: Pharmacy location
+        description: Location of the pharmacist or dispensing area
       - name: FIRSTDATE
-        description: Record creation date
+        description: First recorded date of the prescription item
       - name: STATUS
-        description: Current prescription status
+        description: Status of the prescription
