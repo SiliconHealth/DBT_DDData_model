@@ -2,9 +2,12 @@ SELECT
     -- 🔑 Keys & Identifiers
     RVSTEXM.HN,
     RVSTEXM.RDOGRP,
-    RVSTEXM.RDOEXM,
-    RVSTEXM.ITEMNO,
-    RVSTEXM.REQNO,
+    -- 🧩 Group Metadata
+    RDOGRP.NAME AS GROUP_NAME,
+    -- RVSTEXM.RDOEXM,
+    RDOEXM.NAME AS EXAM_NAME,
+    -- RVSTEXM.ITEMNO,
+    -- RVSTEXM.REQNO,
 
     -- 📅 Combined Visit DateTime
     DATEADD(SECOND, CAST(RVSTEXM.RVSTTIME AS INT) % 100,
@@ -15,7 +18,7 @@ SELECT
 
     -- 👤 Patient & Visit Info
     RVST.VN,
-    RVST.FN,
+    -- RVST.FN,
     RVST.AN,
     RVST.PTTYPE,
     RVST.PTTYPEEXT,
@@ -31,21 +34,19 @@ SELECT
     RVSTEXM.PRICE,
 
     -- 🧪 Exam Metadata
-    RDOEXM.NAME AS EXAM_NAME,
     RDOEXM.ORDERCODE AS EXAM_ORDERCODE,
     RDOEXM.CCHARGE AS EXAM_CHARGE,
 
     -- 📦 Financials
-    RVST.FINLCT,
     LCT_FIN.NAME AS FINLCT_NAME,
+    RVST.FINLCT,
     RVST.FINREFNO,
 
     -- 🏥 Locations
     RVST.RCPTLCT,
     LCT_RCPT.NAME AS RCPTLCT_NAME,
 
-    -- 🧩 Group Metadata
-    RDOGRP.NAME AS GROUP_NAME
+
 
 FROM {{ source('ddc_internal', 'RVSTEXM') }} RVSTEXM
 

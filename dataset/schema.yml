@@ -14,18 +14,18 @@ models:
         description: "Diagnosis type code"
       - name: DIAGTYPE_NAME
         description: "Name or description of the diagnosis type"
-      - name: ITEMNO
-        description: "Diagnosis item number"
+      # - name: ITEMNO
+      #   description: "Diagnosis item number"
       - name: ICD10
         description: "ICD-10 diagnosis code"
       - name: ICD10WHO
         description: "ICD-10 WHO standardized code"
       - name: DISEASE_NAME
         description: "Disease name associated with ICD-10 code"
-      - name: DIAGKEY
-        description: "Unique key for the diagnosis entry"
-      - name: FIRSTDATE
-        description: "Date of the first occurrence of the diagnosis"
+      # - name: DIAGKEY
+      #   description: "Unique key for the diagnosis entry"
+      # - name: FIRSTDATE
+      #   description: "Date of the first occurrence of the diagnosis"
   - name: stg_dataset__opd_diag_icd10
     description: "Diagnosis of OPD patients"
     columns:
@@ -35,12 +35,12 @@ models:
         description: "Visit datetime, calculated by combining INDATE and INTIME (HHMMSS format)"
       - name: CLINICLCT
         description: "Clinic location code"
-      - name: ITEMNO
-        description: "Diagnosis item number"
+      # - name: ITEMNO
+        # description: "Diagnosis item number"
       - name: AN
         description: "Admission number"
       - name: VN
-        description: "Visit number"
+        description: "Visit number for linking purpose"
       - name: ICD10
         description: "ICD-10 diagnosis code"
       - name: ICD10WHO
@@ -51,10 +51,10 @@ models:
         description: "Diagnosis type code"
       - name: DIAGTYPE_NAME
         description: "Name or description of the diagnosis type"
-      - name: DIAGKEY
-        description: "Unique key for the diagnosis entry"
-      - name: FIRSTDATE
-        description: "Date of the first occurrence of the diagnosis"
+      # - name: DIAGKEY
+      #   description: "Unique key for the diagnosis entry"
+      # - name: FIRSTDATE
+      #   description: "Date of the first occurrence of the diagnosis"
   - name: stg_dataset__opd_proc_icd9cm
     description: "Outpatient procedures (ICD-9-CM)"
     columns:
@@ -66,14 +66,14 @@ models:
         description: "Clinic location code"
       - name: DSPNAME
         description: "Display name of the clinic location"
-      - name: HCODE
-        description: "Local hospital code used for internal categorization of services or departments"
-      - name: ITEMNO
-        description: "Procedure item number"
+      # - name: HCODE
+      #   description: "Local hospital code used for internal categorization of services or departments"
+      # - name: ITEMNO
+      #   description: "Procedure item number"
       - name: AN
         description: "Admission number"
       - name: VN
-        description: "Visit number"
+        description: "Visit number for linking purpose"
       - name: ICD9CM
         description: "ICD-9-CM procedure code"
       - name: PROC_NAME
@@ -85,8 +85,8 @@ models:
     columns:
       - name: AN
         description: "Admission number"
-      - name: ITEMNO
-        description: "Procedure item number"
+      # - name: ITEMNO
+      #   description: "Procedure item number"
       - name: ICD9CM
         description: "ICD-9-CM procedure code"
       - name: PROC_NAME
@@ -97,129 +97,129 @@ models:
         description: "Start datetime of the procedure, calculated by combining INDATE and INTIME (HHMMSS format)"
       - name: OUTDATETIME
         description: "End datetime of the procedure, calculated by combining OUTDATE and OUTTIME (HHMMSS format)"
-      - name: FIRSTDATE
-        description: "Date of the first occurrence of the procedure"
-  - name: stg_dataset__cost
-    description: "Costing and charge capture data from INCPT joined with order and patient type reference tables"
-    columns:
-      - name: HN
-        description: "Patient number"
-      - name: INCDATETIME
-        description: "Datetime of the charge, calculated from INCDATE and INCTIME (HHMMSS format)"
-      - name: ORDERCODE
-        description: "Order or procedure code"
-      - name: INCOME
-        description: "Income group code associated with the order"
-      - name: NAME
-        description: "Order or procedure name from MASTERORDER"
-      - name: ITEMNO
-        description: "Item number within a receipt, representing a specific line item in the financial transaction"
-      - name: AN
-        description: "Admission number"
-      - name: VN
-        description: "Visit number"
-      - name: PTTYPE
-        description: "Patient type code"
-      - name: PTTYPE_NAME
-        description: "Patient type name from reference table"
-      - name: PTTYPEEXT
-        description: "Extended patient type code"
-      - name: PTTYPEEXT_NAME
-        description: "Extended patient type name from reference table"
-      - name: DCT
-        description: "Doctor code responsible for the order"
-      - name: OVERTIME
-        description: "Flag indicating if the order was made during overtime hours"
-      - name: RFRLCT
-        description: "Referral location code"
-      - name: INCAMT
-        description: "Amount charged for the order"
-      - name: FINREFNO
-        description: "Reference number of the invoice (ใบแจ้งหนี้); used for financial tracking and billing"
-      - name: QTY
-        description: "Quantity of the item or service ordered"
-      - name: CANCELDATE
-        description: "Date the order was canceled, if applicable"
-      - name: FIRSTDATE
-        description: "Date the order was first recorded"
-      - name: FINLCT
-        description: "Location related to financial handling or billing"
-      - name: INCGRP
-        description: "Income group or category"
-      - name: RFINREFNO
-        description: "Reference number for treatment cancellation (ยกเลิกการรักษา); links to the original financial transaction"
-      - name: RCPTLCT
-        description: "Receipt location code"
-      - name: CASHFREQNO
-        description: "Cash frequency or batch number"
-      - name: EXPDATETIME
-        description: "Datetime representing the expiration of the order or service, calculated from EXPDATE and EXPTIME (HHMM[SS] format)"
-      - name: FEXP_REF
-        description: "Reference to future expected expenses or adjustments"
-      - name: WARD
-        description: "Ward code where the patient stayed"
-      - name: DSPNAME
-        description: "Display name of the ward location"
-      - name: ROOMNO
-        description: "Room number assigned to the patient"
-      - name: BEDNO
-        description: "Bed number assigned to the patient"
-  - name: stg_dataset__opd_visit_timeline
-    description: "Detailed outpatient visit timeline with clinic info, timestamps for key events, and visit metadata"
-    columns:
-      - name: HN
-        description: "Patient number"
-      - name: VSTDATETIME
-        description: "Datetime of the visit, constructed from VSTDATE and VSTTIME (HHMMSS format)"
-      - name: HCODE
-        description: "Local hospital code identifying the clinic location"
-      - name: CLINIC_NAME
-        description: "Display name of the clinic location"
-      - name: CLINICTYPE
-        description: "Type or category of clinic"
-      - name: AN
-        description: "Admission number (if linked to inpatient record)"
-      - name: VN
-        description: "Visit number"
-      - name: DCT
-        description: "Doctor code assigned to the visit"
-      - name: IN_STATUS_NAME
-        description: "Name of in status (from OVSTIST)"
-      - name: OUT_STATUS_NAME
-        description: "Name of out status (from OVSTOST)"
-      - name: WEIGHT
-        description: "Patient weight at the time of visit (kg)"
-      - name: HEIGHT
-        description: "Patient height at the time of visit (cm)"
-      - name: NEXTDATETIME
-        description: "Datetime the current visit was originally scheduled for (appointment datetime from NEXTDATE and NEXTTIME)"
-      - name: OAPPNO
-        description: "Appointment number or outpatient appointment reference"
-      - name: KIOSKDATE
-        description: "Date of kiosk check-in, if applicable"
-      - name: NURSE_CALL_DATETIME
-        description: "Datetime when nurse called the patient"
-      - name: REGDATETIME
-        description: "Datetime of patient registration, from REGDATE and REGTIME"
-      - name: HISTORY_TAKING_DATETIME
-        description: "Datetime of patient interview or history taking (from ITVDATE and ITVTIME)"
-      - name: SNDDCTDATETIME
-        description: "Datetime patient was sent to see the doctor (from SNDDCTDATE and SNDDCTTIME)"
-      - name: DOCTOR_CALL_DATETIME
-        description: "Datetime doctor called the patient"
-      - name: MEET_DCT_DATETIME
-        description: "Datetime of doctor-patient meeting (from MTDCTDATE and MTDCTTIME)"
-      - name: COMPLETE_DISCHARGE_DATETIME
-        description: "Datetime of visit discharge (from CMPDCTDATE and CMPDCTTIME)"
-      - name: AGE
-        description: "Patient age at time of visit"
-      - name: AGEFLAG
-        description: "Flag or indicator for age calculation or special age-related handling"
-      - name: FIRSTDATE
-        description: "Date the visit was first recorded"
-      - name: CANCELDATE
-        description: "Date the visit was canceled, if applicable"
-  - name: stg_finance__vital_signs
+      # - name: FIRSTDATE
+      #   description: "Date of the first occurrence of the procedure"
+  # - name: stg_dataset__cost
+  #   description: "Costing and charge capture data from INCPT joined with order and patient type reference tables"
+  #   columns:
+  #     - name: HN
+  #       description: "Patient number"
+  #     - name: INCDATETIME
+  #       description: "Datetime of the charge, calculated from INCDATE and INCTIME (HHMMSS format)"
+  #     - name: ORDERCODE
+  #       description: "Order or procedure code"
+  #     - name: INCOME
+  #       description: "Income group code associated with the order"
+  #     - name: NAME
+  #       description: "Order or procedure name from MASTERORDER"
+  #     - name: ITEMNO
+  #       description: "Item number within a receipt, representing a specific line item in the financial transaction"
+  #     - name: AN
+  #       description: "Admission number"
+  #     - name: VN
+  #       description: "Visit number"
+  #     - name: PTTYPE
+  #       description: "Patient type code"
+  #     - name: PTTYPE_NAME
+  #       description: "Patient type name from reference table"
+  #     - name: PTTYPEEXT
+  #       description: "Extended patient type code"
+  #     - name: PTTYPEEXT_NAME
+  #       description: "Extended patient type name from reference table"
+  #     - name: DCT
+  #       description: "Doctor code responsible for the order"
+  #     - name: OVERTIME
+  #       description: "Flag indicating if the order was made during overtime hours"
+  #     - name: RFRLCT
+  #       description: "Referral location code"
+  #     - name: INCAMT
+  #       description: "Amount charged for the order"
+  #     - name: FINREFNO
+  #       description: "Reference number of the invoice (ใบแจ้งหนี้); used for financial tracking and billing"
+  #     - name: QTY
+  #       description: "Quantity of the item or service ordered"
+  #     - name: CANCELDATE
+  #       description: "Date the order was canceled, if applicable"
+  #     - name: FIRSTDATE
+  #       description: "Date the order was first recorded"
+  #     - name: FINLCT
+  #       description: "Location related to financial handling or billing"
+  #     - name: INCGRP
+  #       description: "Income group or category"
+  #     - name: RFINREFNO
+  #       description: "Reference number for treatment cancellation (ยกเลิกการรักษา); links to the original financial transaction"
+  #     - name: RCPTLCT
+  #       description: "Receipt location code"
+  #     - name: CASHFREQNO
+  #       description: "Cash frequency or batch number"
+  #     - name: EXPDATETIME
+  #       description: "Datetime representing the expiration of the order or service, calculated from EXPDATE and EXPTIME (HHMM[SS] format)"
+  #     - name: FEXP_REF
+  #       description: "Reference to future expected expenses or adjustments"
+  #     - name: WARD
+  #       description: "Ward code where the patient stayed"
+  #     - name: DSPNAME
+  #       description: "Display name of the ward location"
+  #     - name: ROOMNO
+  #       description: "Room number assigned to the patient"
+  #     - name: BEDNO
+  #       description: "Bed number assigned to the patient"
+  # - name: stg_dataset__opd_visit_timeline
+  #   description: "Detailed outpatient visit timeline with clinic info, timestamps for key events, and visit metadata"
+  #   columns:
+  #     - name: HN
+  #       description: "Patient number"
+  #     - name: VSTDATETIME
+  #       description: "Datetime of the visit, constructed from VSTDATE and VSTTIME (HHMMSS format)"
+  #     - name: HCODE
+  #       description: "Local hospital code identifying the clinic location"
+  #     - name: CLINIC_NAME
+  #       description: "Display name of the clinic location"
+  #     - name: CLINICTYPE
+  #       description: "Type or category of clinic"
+  #     - name: AN
+  #       description: "Admission number (if linked to inpatient record)"
+  #     - name: VN
+  #       description: "Visit number"
+  #     - name: DCT
+  #       description: "Doctor code assigned to the visit"
+  #     - name: IN_STATUS_NAME
+  #       description: "Name of in status (from OVSTIST)"
+  #     - name: OUT_STATUS_NAME
+  #       description: "Name of out status (from OVSTOST)"
+  #     - name: WEIGHT
+  #       description: "Patient weight at the time of visit (kg)"
+  #     - name: HEIGHT
+  #       description: "Patient height at the time of visit (cm)"
+  #     - name: NEXTDATETIME
+  #       description: "Datetime the current visit was originally scheduled for (appointment datetime from NEXTDATE and NEXTTIME)"
+  #     - name: OAPPNO
+  #       description: "Appointment number or outpatient appointment reference"
+  #     - name: KIOSKDATE
+  #       description: "Date of kiosk check-in, if applicable"
+  #     - name: NURSE_CALL_DATETIME
+  #       description: "Datetime when nurse called the patient"
+  #     - name: REGDATETIME
+  #       description: "Datetime of patient registration, from REGDATE and REGTIME"
+  #     - name: HISTORY_TAKING_DATETIME
+  #       description: "Datetime of patient interview or history taking (from ITVDATE and ITVTIME)"
+  #     - name: SNDDCTDATETIME
+  #       description: "Datetime patient was sent to see the doctor (from SNDDCTDATE and SNDDCTTIME)"
+  #     - name: DOCTOR_CALL_DATETIME
+  #       description: "Datetime doctor called the patient"
+  #     - name: MEET_DCT_DATETIME
+  #       description: "Datetime of doctor-patient meeting (from MTDCTDATE and MTDCTTIME)"
+  #     - name: COMPLETE_DISCHARGE_DATETIME
+  #       description: "Datetime of visit discharge (from CMPDCTDATE and CMPDCTTIME)"
+  #     - name: AGE
+  #       description: "Patient age at time of visit"
+  #     - name: AGEFLAG
+  #       description: "Flag or indicator for age calculation or special age-related handling"
+  #     - name: FIRSTDATE
+  #       description: "Date the visit was first recorded"
+  #     - name: CANCELDATE
+  #       description: "Date the visit was canceled, if applicable"
+  - name: stg_dataset__vital_signs
     description: "Outpatient vital signs and triage data collected during visit, including blood pressure, temperature, and GCS"
     columns:
       - name: HN
@@ -233,9 +233,9 @@ models:
       - name: ITEM
         description: "Item or observation index within the visit"
       - name: VN
-        description: "Visit number"
-      - name: FN
-        description: "Form number or internal reference number"
+        description: "Visit number for linking purpose"
+      # - name: FN
+      #   description: "Form number or internal reference number"
       - name: PRDATETIME
         description: "Datetime the vital signs were recorded, from PRDATE and PRTIME (HHMMSS format)"
       - name: AN
@@ -299,8 +299,8 @@ models:
         description: "Patient weight at time of admission (kg)"
       - name: RGTDATETIME
         description: "Datetime of inpatient registration, calculated from RGTDATE and RGTTIME"
-      - name: WARDCODE
-        description: "Ward code of the assigned location"
+      # - name: WARDCODE
+      #   description: "Ward code of the assigned location"
       - name: WARDNAME
         description: "Display name of the ward, resolved from location code"
       - name: ROOM
@@ -317,14 +317,14 @@ models:
         description: "Datetime of discharge, calculated from DCHDATE and DCHTIME"
       - name: SUMMARIZED_DCHDATETIME
         description: "Datetime of discharge from IPTSUMMARY, summarized by Medical records officer"
-      - name: DCHTYPE
-        description: "Discharge type code"
+      # - name: DCHTYPE
+      #   description: "Discharge type code"
       - name: DCHNAME
         description: "Display name for the discharge type"
-      - name: CANCELDATE
-        description: "Date the inpatient record was canceled, if applicable"
-      - name: FIRSTDATE
-        description: "Date the inpatient record was first created"
+      # - name: CANCELDATE
+      #   description: "Date the inpatient record was canceled, if applicable"
+      # - name: FIRSTDATE
+      #   description: "Date the inpatient record was first created"
       - name: SPCCLINICFLAG
         description: "Flag indicating special clinic involvement"
   - name: stg_dataset__lab_details
@@ -332,8 +332,12 @@ models:
     columns:
       - name: HN
         description: "Patient number"
+      - name: AN
+        description: "Admission number"
       - name: LVSTDATETIME
         description: "Date and time the lab was visited or specimen collected"
+      - name: LN
+        description: "Lab number or lab order ID"
       - name: GROUP_NAME
         description: "Lab test group name (e.g., Hematology, Chemistry)"
       - name: LABEXM
@@ -352,12 +356,8 @@ models:
         description: "Hospital-specific lab exam code"
       - name: ORDERCODE
         description: "Order code associated with the lab exam"
-      - name: ITEMNO
-        description: "Item number within the lab visit receipt"
-      - name: AN
-        description: "Admission number"
-      - name: LN
-        description: "Lab number or lab order ID"
+      # - name: ITEMNO
+      #   description: "Item number within the lab visit receipt"
       - name: LABLCT
         description: "Lab location code"
       - name: LAB_LOCATION_NAME
@@ -372,14 +372,14 @@ models:
         description: "Doctor who ordered the lab"
       - name: RQTDATE
         description: "Request date of the lab order"
-      - name: LVSTST
-        description: "Lab visit status code"
-      - name: NAME
-        description: "Status name for the lab visit"
+      # - name: LVSTST
+      #   description: "Lab visit status code"
+      # - name: NAME
+      #   description: "Status name for the lab visit"
       - name: PRICE
         description: "Charge amount for the lab exam"
-      - name: FIRSTDATE
-        description: "Date the lab exam was first recorded"
+      # - name: FIRSTDATE
+      #   description: "Date the lab exam was first recorded"
       - name: OPRTLCT
         description: "Location code for where the procedure was performed"
       - name: PROCEDURAL_LOCATION_NAME
@@ -394,8 +394,33 @@ models:
         description: "Cashier location code"
       - name: CASHIER_LOCATION_NAME
         description: "Display name of the cashier or billing station"
-      - name: CANCELDATE
-        description: "Date the lab order or result was canceled, if applicable"
+      # - name: CANCELDATE
+      #   description: "Date the lab order or result was canceled, if applicable"
+  - name: stg_dataset__lab_details_bacteria_and_mycology
+    description: "Laboratory examination results including test details, specimen type, ordering and procedural locations, financial references, and microbiology sensitivity data"
+    columns:
+      - name: HN
+        description: "Patient number"
+      - name: AN
+        description: "Admission number"
+      - name: LVSTDATETIME
+        description: "Date and time the lab was visited or specimen collected"
+      - name: LN
+        description: "Lab number or lab order ID"      
+      - name: GROUP_NAME
+        description: "Lab test group name (e.g., Hematology, Chemistry)"
+      - name: LABEXM
+        description: "Lab exam code"
+      - name: LAB_NAME
+        description: "Name or description of the lab exam"
+      # - name: RESULT
+      #   description: "Lab test result value"
+      # - name: MINNRM
+      #   description: "Minimum normal reference value for the test"
+      # - name: MAXNRM
+      #   description: "Maximum normal reference value for the test"
+      # - name: NRMUNIT
+      #   description: "Unit of measurement for the result"
       - name: BAC_NAME
         description: "Name of bacteria identified from culture"
       - name: BAC_HCODE
@@ -412,107 +437,87 @@ models:
         description: "Minimum Inhibitory Concentration of the drug"
       - name: UNIT
         description: "Unit of measurement for MIC"
-  - name: stg_dataset__pharmacy_orders_with_display_names
-    description: Medication orders and dispensing data with display names for reference fields and full prescription datetimes
+      - name: HCODE
+        description: "Hospital-specific lab exam code"
+      - name: ORDERCODE
+        description: "Order code associated with the lab exam"
+      # - name: ITEMNO
+      #   description: "Item number within the lab visit receipt"
+      - name: LABLCT
+        description: "Lab location code"
+      - name: LAB_LOCATION_NAME
+        description: "Name of the lab location where the test was performed"
+      - name: SPECIMEN
+        description: "Type of specimen collected for the lab exam"
+      - name: LRFRLCT
+        description: "Location code where the lab was ordered from"
+      - name: LAB_ORDERED_LOCATION_NAME
+        description: "Display name of the location where lab was ordered"
+      - name: DCT
+        description: "Doctor who ordered the lab"
+      - name: RQTDATE
+        description: "Request date of the lab order"
+      - name: LVSTST
+        description: "Lab visit status code"
+      # - name: NAME
+      #   description: "Status name for the lab visit"
+      - name: PRICE
+        description: "Charge amount for the lab exam"
+      # - name: FIRSTDATE
+      #   description: "Date the lab exam was first recorded"
+      - name: OPRTLCT
+        description: "Location code for where the procedure was performed"
+      - name: PROCEDURAL_LOCATION_NAME
+        description: "Name of the location where the procedure took place"
+      - name: FINLCT
+        description: "Financial processing location code"
+      - name: PAYMENT_LOCATION_NAME
+        description: "Name of the payment or billing location"
+      - name: FINREFNO
+        description: "Invoice reference number for the lab exam"
+      - name: RCPTLCT
+        description: "Cashier location code"
+      - name: CASHIER_LOCATION_NAME
+        description: "Display name of the cashier or billing station"
+      # - name: CANCELDATE
+      #   description: "Date the lab order or result was canceled, if applicable"
+  - name: stg_dataset__medication_prescription_summary
+    description: Summarized medication dispensing data including patient info prescription datetime drug details and financial locations
     columns:
-      - name: SPHMLCT
-        description: Pharmacy location code where the prescription was dispensed
-      - name: SPHMLCT_NAME
-        description: Display name of the pharmacy location
-      - name: PRSCNO
-        description: Prescription number
-      - name: ITEMNO
-        description: Item number within the prescription
-      - name: PACKSEQ
-        description: Packaging sequence for the item
       - name: HN
         description: Patient number
       - name: AN
         description: Admission number
-      - name: VN
-        description: Visit number
       - name: PTTYPE
         description: Patient type code
-      - name: PRFRLCT
-        description: Location code where the prescription was requested
+      - name: PTTYPEEXT
+        description: Extended patient type code
       - name: PRFRLCT_NAME
-        description: Display name of the requesting location
+        description: Display name of the location where the prescription was requested
       - name: PRSCDATETIME
-        description: Prescription datetime combined from PRSCDATE and PRSCTIME
+        description: Prescription datetime combined from prescription date and time
       - name: MEDITEM
         description: Medication item code
+      - name: TRADENAME
+        description: Trade name or brand name of the medication
       - name: QTY
-        description: Quantity of medication prescribed
-      - name: MEDCODE
-        description: Hospital specific medication code
-      - name: MEDFORM
-        description: Form of medication
+        description: Total quantity of the medication dispensed
       - name: MEDTYPE
-        description: Type of medication
-      - name: MEDUSETYPE
-        description: Usage type code
-      - name: MEDUSETYPENAME
-        description: Display name for usage type
-      - name: MEDUSEQTY
-        description: Usage quantity code
-      - name: MEDUSEQTYNAME
-        description: Display name for usage quantity
-      - name: MEDUSEUNIT
-        description: Unit code for usage quantity
-      - name: MEDUSEUNITNAME
-        description: Display name for usage unit
-      - name: MEDUSETIME
-        description: Usage time code
-      - name: MEDUSETIMENAME
-        description: Display name for usage time
-      - name: MEDSYMPTOM
-        description: Symptom code for conditional usage
-      - name: MEDSYMPTOMNAME
-        description: Display name for symptom based medication use
-      - name: ICSALE
-        description: Cost rate of the medication item
+        description: Type of item where 10 is medication and 20 is medical supplies
       - name: ORDERCODE
         description: Order code for the medication
       - name: INCOME
         description: Income group associated with the medication
-      - name: PRSCDTEXT
-        description: Free text notes or instructions on the prescription
-      - name: PTTYPEEXT
-        description: Extended patient type code
-      - name: NAME
-        description: Prescription type name
-      - name: PRSCST
-        description: Prescription status
-      - name: TOTALITEM
-        description: Total number of items in the prescription
-      - name: PRSCAMT
-        description: Total cost amount of the prescription
-      - name: TYPE_OF_ORDER
-        description: Type of medication order
-      - name: RUNNING_NO
-        description: Running number for internal tracking
+      - name: FINLCT_NAME
+        description: Display name of the financial processing location
       - name: FINLCT
         description: Financial processing location code
-      - name: FINLCT_NAME
-        description: Display name for the financial processing location
       - name: FINREFNO
         description: Reference number for billing or invoice
-      - name: CONFIRMEDDATETIME
-        description: Datetime the prescription was confirmed from CONFIRMDATE and CONFIRMTIME
-      - name: CHECKEDDATETIME
-        description: Datetime the prescription was checked from CHKDATE and CHKTIME
-      - name: OTPDATETIME
-        description: Outpatient prescription datetime from OTPDATE and OTPTIME
-      - name: CANCELDATE
-        description: Date the prescription was canceled
       - name: ISSUESTF
         description: Staff ID who issued the medication
-      - name: C_PHLOC
-        description: Location of the pharmacist or dispensing area
-      - name: FIRSTDATE
-        description: First recorded date of the prescription item
-      - name: STATUS
-        description: Status of the prescription
+      - name: SPHMLCT_NAME
+        description: Display name of the pharmacy location where the medication was dispensed
   - name: stg_dataset__radiology_orders
     description: Radiology or diagnostic exam requests with patient details timestamps financials and resolved display names
     columns:
@@ -520,18 +525,22 @@ models:
         description: Patient number
       - name: RDOGRP
         description: Exam group code
-      - name: RDOEXM
-        description: Exam code
-      - name: ITEMNO
-        description: Item number within the exam request
-      - name: REQNO
-        description: Exam request number
+      - name: GROUP_NAME
+        description: Name of the exam group
+      # - name: RDOEXM
+      #   description: Exam code
+      - name: EXAM_NAME
+        description: Name or description of the exam
+      # - name: ITEMNO
+      #   description: Item number within the exam request
+      # - name: REQNO
+      #   description: Exam request number
       - name: RVSTDATETIME
         description: Combined datetime of exam request from RVSTDATE and RVSTTIME
       - name: VN
-        description: Visit number
-      - name: FN
-        description: Form number or document number for the visit
+        description: Visit number for linking purpose
+      # - name: FN
+      #   description: Form number or document number for the visit
       - name: AN
         description: Admission number
       - name: PTTYPE
@@ -554,24 +563,20 @@ models:
         description: Quantity of the exam item requested
       - name: PRICE
         description: Price or cost of the exam
-      - name: EXAM_NAME
-        description: Name or description of the exam
       - name: EXAM_ORDERCODE
         description: Order code associated with the exam
       - name: EXAM_CHARGE
         description: Charge group or classification of the exam
-      - name: FINLCT
-        description: Financial processing location code
       - name: FINLCT_NAME
         description: Display name for the financial processing location
+      - name: FINLCT
+        description: Financial processing location code
       - name: FINREFNO
         description: Reference number for the financial transaction
       - name: RCPTLCT
         description: Receipt location code
       - name: RCPTLCT_NAME
         description: Display name for the receipt or cashier location
-      - name: GROUP_NAME
-        description: Name of the exam group
   - name: stg_dataset__patients_health_coverage
     description: Patient healthcare coverage and entitlement data including type subtype and coverage validity dates
     columns:
@@ -599,3 +604,7 @@ models:
         description: Date the coverage was last verified or validated
       - name: FIRSTDATE
         description: First recorded date of the coverage entry
+
+
+
+# PTOPRT
