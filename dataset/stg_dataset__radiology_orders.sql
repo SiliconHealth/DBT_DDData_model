@@ -44,7 +44,7 @@ SELECT
 
     -- 🏥 Locations
     RVST.RCPTLCT,
-    LCT_RCPT.NAME AS RCPTLCT_NAME,
+    LCT_RCPT.NAME AS RCPTLCT_NAME
 
 
 

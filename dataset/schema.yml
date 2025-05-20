@@ -224,10 +224,8 @@ models:
     columns:
       - name: HN
         description: "Patient number"
-      - name: VSTDATE
-        description: "Visit date"
-      - name: VSTTIME
-        description: "Visit time"
+      - name: VSTDATETIME
+        description: "Visit date and visit time"
       - name: CLINICLCT
         description: "Clinic location code"
       - name: ITEM
@@ -425,8 +423,8 @@ models:
         description: "Name of bacteria identified from culture"
       - name: BAC_HCODE
         description: "Hospital-specific bacteria code"
-      - name: BAC_QTY
-        description: "Quantity or colony count of bacteria identified"
+      # - name: BAC_QTY
+      #   description: "Quantity or colony count of bacteria identified"
       - name: MED_NAME
         description: "Name of antimicrobial drug tested"
       - name: SENS_MED_HCODE
